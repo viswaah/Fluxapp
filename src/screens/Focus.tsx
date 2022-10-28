@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button } from 'react-native';
+import { Text, TextInput, Button, View } from 'react-native';
 
 import Countdown from '../components/Countdown';
 
@@ -29,10 +29,15 @@ const getStatus = (status: Status): string => {
 };
 
 const Focus = () => {
-	const [paused, setPaused] = React.useState(false);
+	const [paused, setPaused] = React.useState(true);
 	const [currentSession, setCurrentSession] = React.useState(0);
 	const [status, setStatus] = React.useState<Status>(Status.focus);
 	const [seconds, setSeconds] = React.useState(FOCUS_MINUTES * 60);
+	const [focusSeconds, setFocusSeconds] = React.useState(FOCUS_MINUTES * 60);
+	const [breakSeconds, setBreakSeconds] = React.useState(BREAK_MINUTES * 60);
+	const [longBreakSeconds, setLongBreakSeconds] = React.useState(
+		LONG_BREAK_MINUTES * 60
+	);
 
 	const updateStatus = () => {
 		setStatus((currentStatus) => {
@@ -60,21 +65,64 @@ const Focus = () => {
 	React.useEffect(() => {
 		switch (status) {
 			case Status.focus:
-				setCurrentSession(currentSession + 1);
-				setSeconds(FOCUS_MINUTES * 60);
+				setSeconds(focusSeconds);
 				break;
 			case Status.break:
-				setSeconds(BREAK_MINUTES * 60);
+				setSeconds(breakSeconds);
 				break;
 			case Status.longBreak:
-				setSeconds(LONG_BREAK_MINUTES * 60);
+				setSeconds(longBreakSeconds);
 				break;
 		}
+	}, [status, focusSeconds, breakSeconds, longBreakSeconds]);
+
+	React.useEffect(() => {
+		if (status === Status.focus) setCurrentSession(currentSession + 1);
 		if (PAUSED_SESSION) setPaused(true);
 	}, [status]);
 
 	return (
 		<>
+			<View>
+				<Text>Focus time</Text>
+				<TextInput
+					onEndEditing={({ nativeEvent }) =>
+						setFocusSeconds(parseFloat(nativeEvent.text) * 60)
+					}
+					keyboardType="numeric"
+					returnKeyType="done"
+					selectTextOnFocus={true}
+					placeholder="minutes"
+					defaultValue={`${FOCUS_MINUTES}`}
+				/>
+			</View>
+			<View>
+				<Text>Break time</Text>
+				<TextInput
+					onEndEditing={({ nativeEvent }) =>
+						setBreakSeconds(parseFloat(nativeEvent.text) * 60)
+					}
+					keyboardType="numeric"
+					returnKeyType="done"
+					selectTextOnFocus={true}
+					placeholder="minutes"
+					defaultValue={`${BREAK_MINUTES}`}
+				/>
+			</View>
+			<View>
+				<Text>Long break time</Text>
+				<TextInput
+					onEndEditing={({ nativeEvent }) =>
+						setLongBreakSeconds(parseFloat(nativeEvent.text) * 60)
+					}
+					keyboardType="numeric"
+					returnKeyType="done"
+					selectTextOnFocus={true}
+					placeholder="minutes"
+					defaultValue={`${LONG_BREAK_MINUTES}`}
+				/>
+			</View>
+
 			<Button title="reset" onPress={resetFocus} />
 			<Text>Session: {currentSession}</Text>
 			<Text>{getStatus(status)}</Text>
