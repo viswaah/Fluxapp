@@ -5,7 +5,7 @@ import Countdown from '../components/Countdown';
 
 const FOCUS_MINUTES = 0.15;
 const BREAK_MINUTES = 0.05;
-const LBREAK_MINUTES = 0.1;
+const LONG_BREAK_MINUTES = 0.1;
 const SESSION_COUNT = 4;
 
 // mark this true to have pause after each focus or break
@@ -14,7 +14,7 @@ const PAUSED_SESSION = true;
 const enum Status {
 	focus,
 	break,
-	lbreak,
+	longBreak,
 }
 
 const getStatus = (status: Status): string => {
@@ -23,7 +23,7 @@ const getStatus = (status: Status): string => {
 			return 'Break';
 		case Status.focus:
 			return 'Focus';
-		case Status.lbreak:
+		case Status.longBreak:
 			return 'Long Break';
 	}
 };
@@ -39,7 +39,7 @@ const Focus = () => {
 			switch (currentStatus) {
 				case Status.focus:
 					if (currentSession === SESSION_COUNT) {
-						return Status.lbreak;
+						return Status.longBreak;
 					}
 					return Status.break;
 				case Status.break:
@@ -63,9 +63,8 @@ const Focus = () => {
 			case Status.break:
 				setSeconds(BREAK_MINUTES * 60);
 				break;
-			case Status.lbreak:
-				console.log('lbreak is triggered');
-				setSeconds(LBREAK_MINUTES * 60);
+			case Status.longBreak:
+				setSeconds(LONG_BREAK_MINUTES * 60);
 				break;
 		}
 		if (PAUSED_SESSION) setPaused(true);

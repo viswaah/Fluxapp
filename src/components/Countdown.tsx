@@ -19,10 +19,10 @@ const getRemainingSeconds = (s: number): string => {
 
 const Countdown: React.FC<CountdownProps> = ({ seconds, paused, onEnd }) => {
 	const interval = React.useRef<ReturnType<typeof setInterval>>(null);
-	const [currentSec, setcurrentSec] = React.useState(seconds);
+	const [currentSec, setCurrentSec] = React.useState(seconds);
 
-	const updatecurrentSec = () => {
-		setcurrentSec((currentSec) => {
+	const updateCurrentSec = () => {
+		setCurrentSec((currentSec) => {
 			if (currentSec === 0) {
 				clearInterval(interval.current);
 				return currentSec;
@@ -38,14 +38,14 @@ const Countdown: React.FC<CountdownProps> = ({ seconds, paused, onEnd }) => {
 	}, [currentSec]);
 
 	React.useEffect(() => {
-		setcurrentSec(seconds);
+		setCurrentSec(seconds);
 	}, [seconds]);
 
 	React.useEffect(() => {
 		if (paused) {
 			clearInterval(interval.current);
 		} else {
-			interval.current = setInterval(updatecurrentSec, 1000);
+			interval.current = setInterval(updateCurrentSec, 1000);
 		}
 		return () => clearInterval(interval.current);
 	}, [paused, seconds]);
