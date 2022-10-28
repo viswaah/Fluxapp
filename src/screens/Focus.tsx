@@ -50,8 +50,8 @@ const Focus = () => {
 
 	const resetFocus = () => {
 		setPaused(true);
-		setCurrentSession(0);
 		setStatus(Status.focus);
+		setCurrentSession(1);
 	};
 
 	React.useEffect(() => {
