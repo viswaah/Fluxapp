@@ -3,13 +3,13 @@ import { Text, Button } from 'react-native';
 
 import Countdown from '../components/Countdown';
 
-const FOCUS_MINUTES = 0.15;
+const FOCUS_MINUTES = 0.05;
 const BREAK_MINUTES = 0.05;
-const LONG_BREAK_MINUTES = 0.1;
+const LONG_BREAK_MINUTES = 0.05;
 const SESSION_COUNT = 4;
 
 // mark this true to have pause after each focus or break
-const PAUSED_SESSION = true;
+const PAUSED_SESSION = false;
 
 const enum Status {
 	focus,
@@ -51,7 +51,10 @@ const Focus = () => {
 	const resetFocus = () => {
 		setPaused(true);
 		setStatus(Status.focus);
-		setCurrentSession(1);
+		setCurrentSession(() => {
+			if (status === Status.focus) return 1;
+			else return 0;
+		});
 	};
 
 	React.useEffect(() => {
@@ -76,6 +79,7 @@ const Focus = () => {
 			<Text>Session: {currentSession}</Text>
 			<Text>{getStatus(status)}</Text>
 			<Countdown
+				status={status}
 				seconds={seconds}
 				paused={paused}
 				onEnd={

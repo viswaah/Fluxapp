@@ -2,6 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 
 interface CountdownProps {
+	status: number;
 	seconds: number;
 	paused: boolean;
 	onEnd: () => void;
@@ -17,7 +18,12 @@ const getRemainingSeconds = (s: number): string => {
 	return seconds < 10 ? `0${seconds}` : seconds.toString();
 };
 
-const Countdown: React.FC<CountdownProps> = ({ seconds, paused, onEnd }) => {
+const Countdown: React.FC<CountdownProps> = ({
+	seconds,
+	status,
+	paused,
+	onEnd,
+}) => {
 	const interval = React.useRef<ReturnType<typeof setInterval>>(null);
 	const [currentSec, setCurrentSec] = React.useState(seconds);
 
@@ -39,7 +45,7 @@ const Countdown: React.FC<CountdownProps> = ({ seconds, paused, onEnd }) => {
 
 	React.useEffect(() => {
 		setCurrentSec(seconds);
-	}, [seconds]);
+	}, [status, seconds]);
 
 	React.useEffect(() => {
 		if (paused) {
