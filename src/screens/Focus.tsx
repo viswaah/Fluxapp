@@ -38,17 +38,20 @@ const Focus = () => {
 	const [longBreakSeconds, setLongBreakSeconds] = React.useState(
 		LONG_BREAK_MINUTES * 60
 	);
+	const [sessionCount, setSessionCount] = React.useState(SESSION_COUNT);
 
 	const updateStatus = () => {
 		setStatus((currentStatus) => {
 			switch (currentStatus) {
 				case Status.focus:
-					if (currentSession === SESSION_COUNT) {
+					if (currentSession === sessionCount) {
 						return Status.longBreak;
 					}
 					return Status.break;
 				case Status.break:
 					return Status.focus;
+				case Status.longBreak:
+					return Status.break;
 			}
 		});
 	};
@@ -56,6 +59,7 @@ const Focus = () => {
 	const resetFocus = () => {
 		setPaused(true);
 		setStatus(Status.focus);
+		setSeconds(focusSeconds);
 		setCurrentSession(() => {
 			if (status === Status.focus) return 1;
 			else return 0;
@@ -80,6 +84,11 @@ const Focus = () => {
 		if (status === Status.focus) setCurrentSession(currentSession + 1);
 		if (PAUSED_SESSION) setPaused(true);
 	}, [status]);
+
+	React.useEffect(() => {
+		if (sessionCount >= currentSession) updateStatus();
+		else resetFocus();
+	}, [sessionCount]);
 
 	return (
 		<>
@@ -122,6 +131,19 @@ const Focus = () => {
 					defaultValue={`${LONG_BREAK_MINUTES}`}
 				/>
 			</View>
+			<View>
+				<Text>Session count</Text>
+				<TextInput
+					onEndEditing={({ nativeEvent }) =>
+						setSessionCount(parseInt(nativeEvent.text))
+					}
+					keyboardType="numeric"
+					returnKeyType="done"
+					selectTextOnFocus={true}
+					placeholder="minutes"
+					defaultValue={`${SESSION_COUNT}`}
+				/>
+			</View>
 
 			<Button title="reset" onPress={resetFocus} />
 			<Text>Session: {currentSession}</Text>
@@ -131,7 +153,7 @@ const Focus = () => {
 				seconds={seconds}
 				paused={paused}
 				onEnd={
-					currentSession === 4 && status !== Status.focus
+					currentSession >= sessionCount && status !== Status.focus
 						? resetFocus
 						: updateStatus
 				}
