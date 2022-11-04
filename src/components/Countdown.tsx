@@ -6,6 +6,7 @@ interface CountdownProps {
   status: number;
   seconds: number;
   paused: boolean;
+  soundOn: boolean;
   onEnd: () => void;
 }
 
@@ -23,6 +24,7 @@ const Countdown: React.FC<CountdownProps> = ({
   seconds,
   status,
   paused,
+  soundOn,
   onEnd,
 }) => {
   const interval = React.useRef<ReturnType<typeof setInterval>>(null);
@@ -50,7 +52,7 @@ const Countdown: React.FC<CountdownProps> = ({
 
   React.useEffect(() => {
     const playSound = async () => {
-      if (soundRef.current && currentSec !== seconds) {
+      if (soundOn && soundRef.current && currentSec !== seconds) {
         await soundRef.current.sound.playAsync();
         await soundRef.current.sound.replayAsync();
       }
@@ -66,8 +68,16 @@ const Countdown: React.FC<CountdownProps> = ({
   }, [status, seconds]);
 
   React.useEffect(() => {
-    if (paused) {
+    if (soundRef.current) {
       soundRef.current.sound.stopAsync().then(() => {});
+    }
+  }, [soundOn]);
+
+  React.useEffect(() => {
+    if (paused) {
+      if (soundRef.current) {
+        soundRef.current.sound.stopAsync().then(() => {});
+      }
       clearInterval(interval.current);
     } else {
       interval.current = setInterval(updateCurrentSec, 1000);
