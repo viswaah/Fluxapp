@@ -1,12 +1,14 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import React from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
 
-import {RealmContext} from './models';
-import {App} from './App';
+import { RealmContext } from "./models";
+import { App } from "./App";
 
 //* Real non sync : to store online need to enable sync
 export const AppWrapper = () => {
-  const {RealmProvider} = RealmContext;
+  const { RealmProvider } = RealmContext;
+
+  console.log("* REALM PATH: " + Realm.defaultPath); //* ==> local db path
 
   return (
     <SafeAreaView style={styles.screen}>
