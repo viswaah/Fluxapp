@@ -3,6 +3,8 @@ import { StyleSheet, View } from "react-native";
 import React from "react";
 import Focus from "./screens/Focus";
 import { registerConfig } from "./localStorage";
+import { theme } from "./theme";
+import { ThemeProvider } from "styled-components";
 
 export const App = () => {
   React.useEffect(() => {
@@ -15,10 +17,12 @@ export const App = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Focus />
-    </View>
+    <ThemeProvider theme={theme}>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <Focus />
+      </View>
+    </ThemeProvider>
   );
 };
 
