@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import Focus from "./screens/Focus";
+import Focus from "./screens/focus/focus.screen";
 import { registerConfig } from "./localStorage";
 import { theme } from "./theme";
 import { ThemeProvider } from "styled-components";
