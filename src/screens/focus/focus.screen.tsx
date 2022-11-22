@@ -3,8 +3,7 @@ import { Feather } from "@expo/vector-icons";
 
 import Countdown from "../../components/countdown/countdown.component";
 import Progress from "../../components/progress/progress.component";
-import { TypeText } from "./focus.styles";
-import { sizes } from "../../theme/sizes";
+import { TypeText, FocusContainer, ResetButton } from "./focus.styles";
 import { TouchableOpacity } from "react-native";
 
 const FOCUS_MINUTES = 0.05;
@@ -74,7 +73,16 @@ const Focus: React.FC = () => {
   }, [type]);
 
   return (
-    <>
+    <FocusContainer>
+      <ResetButton
+        onPress={() => {
+          setCurrentFlow(1);
+          setStatus("COMPLETED");
+          setType("FLOW");
+        }}
+      >
+        <Feather name="rotate-ccw" size={24} color="black" />
+      </ResetButton>
       <TypeText>{type}</TypeText>
       <Countdown
         durations={durations}
@@ -96,7 +104,7 @@ const Focus: React.FC = () => {
           color="black"
         />
       </TouchableOpacity>
-    </>
+    </FocusContainer>
   );
 };
 
