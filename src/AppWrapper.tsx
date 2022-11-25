@@ -1,8 +1,9 @@
 import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-
+import { Provider } from "react-redux";
 import { RealmContext } from "./models";
 import { App } from "./App";
+import { store } from "./redux";
 
 //* Real non sync : to store online need to enable sync
 export const AppWrapper = () => {
@@ -12,9 +13,11 @@ export const AppWrapper = () => {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <RealmProvider>
-        <App />
-      </RealmProvider>
+      <Provider store={store}>
+        <RealmProvider>
+          <App />
+        </RealmProvider>
+      </Provider>
     </SafeAreaView>
   );
 };
