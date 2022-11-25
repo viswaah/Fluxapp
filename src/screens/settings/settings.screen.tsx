@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch } from "react-native";
+import { Switch, Button } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import { colors } from "../../theme/colors";
@@ -11,6 +11,8 @@ import {
   SettingsSelect,
 } from "./settings.styles";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+import { updateSettings, useAppDispatch } from "../../redux";
 
 type SettingsProps = NativeStackScreenProps<
   {
@@ -34,9 +36,16 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
   const [shortBreakDurationIndex, setShortBreakDurationIndex] =
     React.useState(0);
   const [longBreakDurationIndex, setLongBreakDurationIndex] = React.useState(3);
+  const dispatch = useAppDispatch()
 
   return (
     <SettingsContainer>
+      <Button
+        title="name"
+        onPress={() => {
+          dispatch(updateSettings({ key: "FOCUS_MINUTES", value: 500 }));
+        }}
+      />
       <SettingsTitle>Sessions</SettingsTitle>
       <SettingsMenuItem>
         <SettingsMenuItemLabel>Start flow automatically</SettingsMenuItemLabel>
