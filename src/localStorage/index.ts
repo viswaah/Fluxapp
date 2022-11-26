@@ -1,2 +1,2 @@
-export * from "./localStorage";
-export * from "./registerConfig";
+export * from './localStorage';
+export * from './registerConfig';
