@@ -20,52 +20,54 @@ const getRemainingSeconds = (s: number): string => {
 };
 
 interface CountdownProps {
-    type: 'FLOW' | 'BREAK' | 'LONG_BREAK';
-    durations: number;
-    isPaused: boolean;
-    onEnd: () => void;
+  type: "FLOW" | "BREAK" | "LONG_BREAK";
+  isCompleted: boolean;
+  durations: number;
+  isPaused: boolean;
+  onEnd: () => void;
 }
 
 const Countdown: React.FC<CountdownProps> = ({
-    type,
-    isPaused,
-    durations,
-    onEnd
+  type,
+  isPaused,
+  durations,
+  isCompleted,
+  onEnd,
 }) => {
-    const interval = React.useRef<ReturnType<typeof setInterval>>(null);
-    const [currentSec, setCurrentSec] = React.useState(durations);
+  const interval = React.useRef<ReturnType<typeof setInterval>>(null);
+  const [currentSec, setCurrentSec] = React.useState(durations);
 
-    const updateCurrentSec = () => {
-        setCurrentSec(currentSec => {
-            if (currentSec === 0) {
-                clearInterval(interval.current);
-                return currentSec;
-            }
-            return currentSec - 1;
-        });
-    };
+  const updateCurrentSec = () => {
+      setCurrentSec(currentSec => {
+          if (currentSec === 0) {
+              clearInterval(interval.current);
+              return currentSec;
+          }
+          return currentSec - 1;
+      });
+  };
 
-    React.useEffect(() => {
-        if (currentSec === 0) onEnd();
-    }, [currentSec]);
+  React.useEffect(() => {
+    if (currentSec === 0) onEnd();
+  }, [currentSec]);
 
-    React.useEffect(() => {
-        setCurrentSec(durations);
-    }, [type, durations]);
+  React.useEffect(() => {
+    setCurrentSec(durations);
+  }, [type, durations, isCompleted]);
 
-    React.useEffect(() => {
-        if (isPaused) clearInterval(interval.current);
-        else interval.current = setInterval(updateCurrentSec, 1000);
-        return () => clearInterval(interval.current);
-    });
+  React.useEffect(() => {
+    if (isPaused) clearInterval(interval.current);
+    else interval.current = setInterval(updateCurrentSec, 1000);
+    return () => clearInterval(interval.current);
+  });
 
-    return (
-        <CountdownText>
-            {`${getMinutesFromSeconds(currentSec)}:${getRemainingSeconds(
-                currentSec
-            )}`}
-        </CountdownText>
-    );
+  return (
+    <CountdownText>
+      {getMinutesFromSeconds(currentSec) +
+        ":" +
+        getRemainingSeconds(currentSec)}
+    </CountdownText>
+  );
 };
 
 export default Countdown;
