@@ -3,7 +3,8 @@ import { SafeAreaView, StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import { RealmContext } from "./models";
 import { App } from "./App";
-import { store } from "./redux";
+import { persistor, store } from "./redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 //* Real non sync : to store online need to enable sync
 export const AppWrapper = () => {
@@ -14,9 +15,11 @@ export const AppWrapper = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <Provider store={store}>
-        <RealmProvider>
-          <App />
-        </RealmProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <RealmProvider>
+            <App />
+          </RealmProvider>
+        </PersistGate>
       </Provider>
     </SafeAreaView>
   );

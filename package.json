@@ -29,6 +29,7 @@
     "realm": "^10.19.0",
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
