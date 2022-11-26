@@ -8,7 +8,8 @@ export const settingsSlice = createSlice({
         LONG_BREAK_MINUTES: 0.05,
         FLOW_COUNT: 4,
         START_FLOW_AUTOMATICALLY: false,
-        START_BREAK_AUTOMATICALLY: false
+        START_BREAK_AUTOMATICALLY: false,
+        METRONOME: false
     },
     reducers: {
         updateSettings: (state, action) => {
