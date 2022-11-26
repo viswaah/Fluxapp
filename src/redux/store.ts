@@ -1,9 +1,10 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {configureStore} from '@reduxjs/toolkit';
-import {settingsSlice} from './settings';
+import {combineReducers} from 'redux';
 import logger from 'redux-logger';
 import {persistReducer, persistStore} from 'redux-persist';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {combineReducers} from 'redux';
+
+import {settingsSlice} from './settings';
 
 const reducers = combineReducers({
     settings: settingsSlice.reducer

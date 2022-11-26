@@ -2,10 +2,15 @@ import {Realm} from '@realm/react';
 
 export class Flow extends Realm.Object {
     _id!: Realm.BSON.ObjectId;
+
     status!: 'PLAYING' | 'PAUSED' | 'COMPLETED';
+
     type!: 'FLOW' | 'BREAK' | 'LONG_BREAK';
+
     durations!: number;
+
     createdAt!: Date;
+
     completedAt: Date;
 
     static schema = {

@@ -1,9 +1,10 @@
 import React from 'react';
+
 import {
     Finished,
+    ProgressContainer,
     Running,
-    Unfinished,
-    ProgressContainer
+    Unfinished
 } from './progress.styles';
 
 interface ProgressProps {

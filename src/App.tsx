@@ -1,13 +1,14 @@
-import {StyleSheet} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
-import React from 'react';
-import Focus from './screens/focus/focus.screen';
-import {registerConfig} from './localStorage';
-import {theme} from './theme';
-import {ThemeProvider} from 'styled-components';
-import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import React from 'react';
+import {StyleSheet} from 'react-native';
+import {ThemeProvider} from 'styled-components';
+
+import {registerConfig} from './localStorage';
 import SettingsNavigation from './navigation/settings.navigation';
+import Focus from './screens/focus/focus.screen';
+import {theme} from './theme';
 import {colors} from './theme/colors';
 
 const Tab = createBottomTabNavigator();
@@ -56,8 +57,7 @@ export const App = () => {
                             paddingTop: 16,
                             paddingBottom: 16
                         }
-                    })}
-                >
+                    })}>
                     <Tab.Screen name="Focus" component={Focus} />
                     <Tab.Screen
                         name="SettingsNavigation"
@@ -71,9 +71,9 @@ export const App = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
+        backgroundColor: '#fff',
+        flex: 1,
         justifyContent: 'center'
     }
 });

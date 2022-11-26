@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {fontSizes} from '../../theme/fonts';
+
 import {colors} from '../../theme/colors';
+import {fontSizes} from '../../theme/fonts';
 
 const CountdownText = styled.Text`
     color: ${colors.text.primary};
@@ -60,9 +61,9 @@ const Countdown: React.FC<CountdownProps> = ({
 
     return (
         <CountdownText>
-            {getMinutesFromSeconds(currentSec) +
-                ':' +
-                getRemainingSeconds(currentSec)}
+            {`${getMinutesFromSeconds(currentSec)}:${getRemainingSeconds(
+                currentSec
+            )}`}
         </CountdownText>
     );
 };

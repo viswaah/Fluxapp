@@ -1,12 +1,13 @@
-import React from 'react';
 import {Feather} from '@expo/vector-icons';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React from 'react';
+
 import {
     SelectContainer,
     SelectItem,
     SelectItemLabel,
     SelectItemTouchable
 } from './select.styles';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 type SelectProps = NativeStackScreenProps<
     {
@@ -30,8 +31,7 @@ const Select: React.FC<SelectProps> = props => {
                     <SelectItemTouchable
                         onPress={() => {
                             navigation.goBack();
-                        }}
-                    >
+                        }}>
                         <SelectItemLabel>{number}m</SelectItemLabel>
                         {idx === selected && (
                             <Feather name="check" size={24} color="black" />

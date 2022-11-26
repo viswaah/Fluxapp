@@ -1,18 +1,17 @@
-import React from 'react';
-import {Switch, Button} from 'react-native';
 import {Feather} from '@expo/vector-icons';
-
-import {colors} from '../../theme/colors';
-import {
-    SettingsMenuItem,
-    SettingsMenuItemLabel,
-    SettingsTitle,
-    SettingsContainer,
-    SettingsSelect
-} from './settings.styles';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React from 'react';
+import {Button, Switch} from 'react-native';
 
 import {updateSettings, useAppDispatch} from '../../redux';
+import {colors} from '../../theme/colors';
+import {
+    SettingsContainer,
+    SettingsMenuItem,
+    SettingsMenuItemLabel,
+    SettingsSelect,
+    SettingsTitle
+} from './settings.styles';
 
 type SettingsProps = NativeStackScreenProps<
     {
@@ -86,8 +85,7 @@ const Settings: React.FC<SettingsProps> = ({navigation}) => {
                             list: flowDurations,
                             selected: flowDurationIndex
                         });
-                    }}
-                >
+                    }}>
                     <SettingsMenuItemLabel>
                         {flowDurations[flowDurationIndex]}m
                     </SettingsMenuItemLabel>
@@ -104,8 +102,7 @@ const Settings: React.FC<SettingsProps> = ({navigation}) => {
                             list: shortBreakDurations,
                             selected: shortBreakDurationIndex
                         });
-                    }}
-                >
+                    }}>
                     <SettingsMenuItemLabel>
                         {shortBreakDurations[shortBreakDurationIndex]}m
                     </SettingsMenuItemLabel>
@@ -122,8 +119,7 @@ const Settings: React.FC<SettingsProps> = ({navigation}) => {
                             list: longBreakDurations,
                             selected: longBreakDurationIndex
                         });
-                    }}
-                >
+                    }}>
                     <SettingsMenuItemLabel>
                         {longBreakDurations[longBreakDurationIndex]}m
                     </SettingsMenuItemLabel>

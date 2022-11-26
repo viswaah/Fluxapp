@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+
 import {colors} from '../../theme/colors';
 import {sizes} from '../../theme/sizes';
 import {spaces} from '../../theme/spaces';
