@@ -104,7 +104,8 @@ const Focus: React.FC = () => {
                     setCurrentFlow(1);
                     setStatus('COMPLETED');
                     setType('FLOW');
-                }}>
+                }}
+            >
                 <Feather name="rotate-ccw" size={24} color="black" />
             </ResetButton>
             <TypeText>{type}</TypeText>

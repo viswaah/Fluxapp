@@ -57,7 +57,8 @@ export const App = () => {
                             paddingTop: 16,
                             paddingBottom: 16
                         }
-                    })}>
+                    })}
+                >
                     <Tab.Screen name="Focus" component={Focus} />
                     <Tab.Screen
                         name="SettingsNavigation"

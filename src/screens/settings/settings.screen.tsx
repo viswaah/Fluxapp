@@ -93,7 +93,8 @@ const Settings: React.FC<SettingsProps> = ({navigation}) => {
                             selected: FOCUS_MINUTES,
                             key: 'FOCUS_MINUTES'
                         });
-                    }}>
+                    }}
+                >
                     <SettingsMenuItemLabel>
                         {FOCUS_MINUTES}m
                     </SettingsMenuItemLabel>
@@ -111,7 +112,8 @@ const Settings: React.FC<SettingsProps> = ({navigation}) => {
                             selected: BREAK_MINUTES,
                             key: 'BREAK_MINUTES'
                         });
-                    }}>
+                    }}
+                >
                     <SettingsMenuItemLabel>
                         {BREAK_MINUTES}m
                     </SettingsMenuItemLabel>
@@ -129,7 +131,8 @@ const Settings: React.FC<SettingsProps> = ({navigation}) => {
                             selected: LONG_BREAK_MINUTES,
                             key: 'LONG_BREAK_MINUTES'
                         });
-                    }}>
+                    }}
+                >
                     <SettingsMenuItemLabel>
                         {LONG_BREAK_MINUTES}m
                     </SettingsMenuItemLabel>
