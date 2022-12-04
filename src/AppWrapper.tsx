@@ -7,8 +7,14 @@ import {App} from './App';
 import {RealmContext} from './models';
 import {persistor, store} from './redux';
 
+const styles = StyleSheet.create({
+    screen: {
+        flex: 1
+    }
+});
+
 //* Real non sync : to store online need to enable sync
-export const AppWrapper = () => {
+export const AppWrapper: React.FC = () => {
     const {RealmProvider} = RealmContext;
 
     console.log(`* REALM PATH: ${Realm.defaultPath}`); //* ==> local db path
@@ -25,9 +31,3 @@ export const AppWrapper = () => {
         </SafeAreaView>
     );
 };
-
-const styles = StyleSheet.create({
-    screen: {
-        flex: 1
-    }
-});
