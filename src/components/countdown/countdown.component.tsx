@@ -40,12 +40,12 @@ const Countdown: React.FC<CountdownProps> = ({
     const [currentSec, setCurrentSec] = React.useState(durations);
 
     const updateCurrentSec = (): void => {
-        setCurrentSec(currentSec => {
-            if (currentSec === 0) {
+        setCurrentSec(sec => {
+            if (sec === 0) {
                 clearInterval(interval.current);
-                return currentSec;
+                return sec;
             }
-            return currentSec - 1;
+            return sec - 1;
         });
     };
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components/native';
 
 import {colors} from '../../theme/colors';
@@ -38,13 +39,13 @@ export const Unfinished = styled.View`
     margin-right: ${gapBetweenCircles};
 `;
 
-export const Running = () => (
+export const Running: React.FC = () => (
     <Unfinished>
         <HalfFilled />
     </Unfinished>
 );
 
-export const Finished = () => (
+export const Finished: React.FC = () => (
     <Unfinished>
         <FullFilled />
     </Unfinished>

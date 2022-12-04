@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 });
 
 //* Real non sync : to store online need to enable sync
-export const AppWrapper: React.FC = () => {
+const AppWrapper: React.FC = () => {
     const {RealmProvider} = RealmContext;
 
     console.log(`* REALM PATH: ${Realm.defaultPath}`); //* ==> local db path
@@ -31,3 +31,5 @@ export const AppWrapper: React.FC = () => {
         </SafeAreaView>
     );
 };
+
+export default AppWrapper;
