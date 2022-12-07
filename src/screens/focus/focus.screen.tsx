@@ -5,6 +5,7 @@ import React from 'react';
 import tick from '../../../assets/tick.wav';
 import Countdown from '../../components/countdown/countdown.component';
 import Progress from '../../components/progress/progress.component';
+import SafeArea from '../../components/safearea/safearea.component';
 import {updateSettings, useAppDispatch, useAppSelector} from '../../redux';
 import {colors} from '../../theme/colors';
 import {
@@ -131,65 +132,69 @@ const Focus: React.FC = () => {
     }, [type, BREAK_MINUTES, FOCUS_MINUTES, LONG_BREAK_MINUTES]);
 
     return (
-        <FocusContainer>
-            <FocusTitleContainer>
-                <FocusTitleInput placeholder="Enter focus name" />
-                <EditFocusButton>
-                    <MaterialIcons
-                        name="edit"
-                        size={26}
-                        color={colors.bg.secondary}
-                    />
-                </EditFocusButton>
-            </FocusTitleContainer>
-            <TypeText>{focusStatusText()}</TypeText>
-            <Countdown
-                durations={durations}
-                isPaused={status === 'PAUSED' || status === 'COMPLETED'}
-                type={type}
-                onEnd={onSessionTypeEnd}
-                onProgress={whilePlayingFn}
-                isCompleted={status === 'COMPLETED'}
-            />
-            <Progress
-                currentFlow={currentFlow}
-                flowCount={FLOW_COUNT}
-                isBreak={type === 'BREAK' || type === 'LONG_BREAK'}
-                isCompleted={status === 'COMPLETED'}
-            />
-            <ControlsContainer>
-                <SecondaryControl
-                    onPress={() => {
-                        dispatch(
-                            updateSettings({
-                                key: 'METRONOME',
-                                value: !METRONOME
-                            })
-                        );
-                    }}>
-                    <MaterialIcons
-                        name={METRONOME ? 'music-off' : 'music-note'}
-                        size={32}
-                        color={colors.bg.secondary}
-                    />
-                </SecondaryControl>
-                <PrimaryControl onPress={() => togglePaused()}>
-                    <PrimaryControlText>{mainControlText()}</PrimaryControlText>
-                </PrimaryControl>
-                <SecondaryControl
-                    onPress={() => {
-                        setCurrentFlow(1);
-                        setStatus('COMPLETED');
-                        setType('FLOW');
-                    }}>
-                    <MaterialIcons
-                        name="stop"
-                        size={32}
-                        color={colors.bg.secondary}
-                    />
-                </SecondaryControl>
-            </ControlsContainer>
-        </FocusContainer>
+        <SafeArea>
+            <FocusContainer>
+                <FocusTitleContainer>
+                    <FocusTitleInput placeholder="Enter focus name" />
+                    <EditFocusButton>
+                        <MaterialIcons
+                            name="edit"
+                            size={26}
+                            color={colors.bg.secondary}
+                        />
+                    </EditFocusButton>
+                </FocusTitleContainer>
+                <TypeText>{focusStatusText()}</TypeText>
+                <Countdown
+                    durations={durations}
+                    isPaused={status === 'PAUSED' || status === 'COMPLETED'}
+                    type={type}
+                    onEnd={onSessionTypeEnd}
+                    onProgress={whilePlayingFn}
+                    isCompleted={status === 'COMPLETED'}
+                />
+                <Progress
+                    currentFlow={currentFlow}
+                    flowCount={FLOW_COUNT}
+                    isBreak={type === 'BREAK' || type === 'LONG_BREAK'}
+                    isCompleted={status === 'COMPLETED'}
+                />
+                <ControlsContainer>
+                    <SecondaryControl
+                        onPress={() => {
+                            dispatch(
+                                updateSettings({
+                                    key: 'METRONOME',
+                                    value: !METRONOME
+                                })
+                            );
+                        }}>
+                        <MaterialIcons
+                            name={METRONOME ? 'music-off' : 'music-note'}
+                            size={32}
+                            color={colors.bg.secondary}
+                        />
+                    </SecondaryControl>
+                    <PrimaryControl onPress={() => togglePaused()}>
+                        <PrimaryControlText>
+                            {mainControlText()}
+                        </PrimaryControlText>
+                    </PrimaryControl>
+                    <SecondaryControl
+                        onPress={() => {
+                            setCurrentFlow(1);
+                            setStatus('COMPLETED');
+                            setType('FLOW');
+                        }}>
+                        <MaterialIcons
+                            name="stop"
+                            size={32}
+                            color={colors.bg.secondary}
+                        />
+                    </SecondaryControl>
+                </ControlsContainer>
+            </FocusContainer>
+        </SafeArea>
     );
 };
 

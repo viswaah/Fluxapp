@@ -9,11 +9,9 @@ import {
     RouteProp
 } from '@react-navigation/native';
 import React from 'react';
-import {ThemeProvider} from 'styled-components';
 
 import SettingsNavigation from './navigation/settings.navigation';
 import Focus from './screens/focus/focus.screen';
-import {theme} from './theme';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,16 +49,14 @@ const createScreenOptions:
 
 export const App: React.FC = () => {
     return (
-        <ThemeProvider theme={theme}>
-            <NavigationContainer>
-                <Tab.Navigator screenOptions={createScreenOptions}>
-                    <Tab.Screen name="Focus" component={Focus} />
-                    <Tab.Screen
-                        name="SettingsNavigation"
-                        component={SettingsNavigation}
-                    />
-                </Tab.Navigator>
-            </NavigationContainer>
-        </ThemeProvider>
+        <NavigationContainer>
+            <Tab.Navigator screenOptions={createScreenOptions}>
+                <Tab.Screen name="Focus" component={Focus} />
+                <Tab.Screen
+                    name="SettingsNavigation"
+                    component={SettingsNavigation}
+                />
+            </Tab.Navigator>
+        </NavigationContainer>
     );
 };
