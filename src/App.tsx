@@ -12,6 +12,7 @@ import React from 'react';
 
 import SettingsNavigation from './navigation/settings.navigation';
 import Focus from './screens/focus/focus.screen';
+import {colors} from './theme/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -40,10 +41,12 @@ const createScreenOptions:
         tabBarShowLabel: false,
         headerShown: false,
         tabBarStyle: {
-            height: 64,
-            paddingTop: 16,
-            paddingBottom: 16
-        }
+            height: 52
+        },
+        tabBarActiveTintColor: colors.text.primary,
+        tabBarInactiveTintColor: colors.text.primary,
+        tabBarActiveBackgroundColor: colors.bg.secondary,
+        tabBarInactiveBackgroundColor: colors.bg.secondary
     };
 };
 
