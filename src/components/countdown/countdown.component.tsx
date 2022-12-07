@@ -45,7 +45,7 @@ const Countdown: React.FC<CountdownProps> = ({
                 clearInterval(interval.current);
                 return sec;
             }
-            return sec - 1;
+            return sec - 60;
         });
     };
 
@@ -54,7 +54,8 @@ const Countdown: React.FC<CountdownProps> = ({
         (async () => {
             await onProgress();
         })();
-    }, [currentSec, onEnd, onProgress]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentSec]);
 
     React.useEffect(() => {
         setCurrentSec(durations);

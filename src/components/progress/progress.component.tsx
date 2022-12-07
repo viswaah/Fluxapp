@@ -4,7 +4,9 @@ import React from 'react';
 import {
     Finished,
     ProgressContainer,
+    ProgressLine,
     Running,
+    SingleProgressItem,
     Unfinished
 } from './progress.styles';
 
@@ -26,10 +28,30 @@ const Progress: React.FC<ProgressProps> = ({
             {Array(flowCount)
                 .fill(0)
                 .map((elem, idx) => {
-                    if (idx + 1 < currentFlow) return <Finished key={idx} />;
+                    if (idx + 1 < currentFlow)
+                        return (
+                            <SingleProgressItem key={idx}>
+                                {idx === 0 ? <></> : <ProgressLine />}
+                                <Finished />
+                            </SingleProgressItem>
+                        );
                     if (idx + 1 === currentFlow && !isBreak && !isCompleted)
-                        return <Running key={idx} />;
-                    return <Unfinished key={idx} />;
+                        return (
+                            <SingleProgressItem key={idx}>
+                                {idx === 0 ? <></> : <ProgressLine />}
+                                <Running />
+                            </SingleProgressItem>
+                        );
+                    return (
+                        <SingleProgressItem key={idx}>
+                            {idx === 0 ? (
+                                <></>
+                            ) : (
+                                <ProgressLine finished={false} />
+                            )}
+                            <Unfinished />
+                        </SingleProgressItem>
+                    );
                 })}
         </ProgressContainer>
     );
