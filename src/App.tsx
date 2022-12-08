@@ -10,15 +10,15 @@ import {
 } from '@react-navigation/native';
 import React from 'react';
 
-import SettingsNavigation from './navigation/settings.navigation';
 import Focus from './screens/focus/focus.screen';
+import Settings from './screens/settings/settings.screen';
 import {colors} from './theme/colors';
 
 const Tab = createBottomTabNavigator();
 
 const TAB_ICON = {
     Focus: 'md-timer',
-    SettingsNavigation: 'settings'
+    Settings: 'settings'
 };
 
 const createScreenOptions:
@@ -55,10 +55,7 @@ export const App: React.FC = () => {
         <NavigationContainer>
             <Tab.Navigator screenOptions={createScreenOptions}>
                 <Tab.Screen name="Focus" component={Focus} />
-                <Tab.Screen
-                    name="SettingsNavigation"
-                    component={SettingsNavigation}
-                />
+                <Tab.Screen name="Settings" component={Settings} />
             </Tab.Navigator>
         </NavigationContainer>
     );

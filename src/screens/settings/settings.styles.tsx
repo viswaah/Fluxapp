@@ -18,11 +18,11 @@ export const SettingsTitle = styled.Text`
 export const SettingsMenuItem = styled.View`
     flex-direction: row;
     justify-content: space-between;
-    padding-top: ${spaces[2]};
-    padding-bottom: ${spaces[2]};
-    border-bottom-width: 1px;
-    border-style: solid;
-    border-color: ${colors.text.disabled};
+    padding: ${spaces[3]};
+    background-color: ${colors.bg.secondary};
+    margin-bottom: ${spaces[2]};
+    border-radius: ${spaces[3]};
+    flex-wrap: wrap;
 `;
 
 export const SettingsMenuItemLabel = styled.Text`
@@ -32,4 +32,8 @@ export const SettingsMenuItemLabel = styled.Text`
 
 export const SettingsSelect = styled.TouchableOpacity`
     flex-direction: row;
+`;
+
+export const SettingsAccordion = styled.View`
+    width: 100%;
 `;
