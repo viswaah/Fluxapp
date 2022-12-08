@@ -21,6 +21,7 @@
         "@react-navigation/native-stack": "^6.9.2",
         "@realm/react": "^0.3.1",
         "@reduxjs/toolkit": "^1.9.0",
+        "@vseslav/react-native-horizontal-picker": "^0.1.1",
         "expo": "^44.0.6",
         "expo-av": "~10.2.0",
         "expo-dev-client": "~0.8.6",

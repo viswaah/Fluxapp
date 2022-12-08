@@ -27,6 +27,7 @@ export const SettingsMenuItem = styled.View`
 
 export const SettingsMenuItemLabel = styled.Text`
     font-size: ${fontSizes.body};
+    margin-right: ${spaces[1]};
     color: ${colors.text.primary};
 `;
 
@@ -36,4 +37,10 @@ export const SettingsSelect = styled.TouchableOpacity`
 
 export const SettingsAccordion = styled.View`
     width: 100%;
+`;
+
+export const HorizontalPickerView = styled.View`
+    width: 80px;
+    justify-content: center;
+    align-items: center;
 `;

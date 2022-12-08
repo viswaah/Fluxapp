@@ -1,4 +1,5 @@
 import {Feather} from '@expo/vector-icons';
+import HorizontalPicker from '@vseslav/react-native-horizontal-picker';
 import React from 'react';
 import {Switch, Text} from 'react-native';
 
@@ -6,6 +7,7 @@ import SafeArea from '../../components/safearea/safearea.component';
 import {updateSettings, useAppDispatch, useAppSelector} from '../../redux';
 import {colors} from '../../theme/colors';
 import {
+    HorizontalPickerView,
     SettingsAccordion,
     SettingsContainer,
     SettingsMenuItem,
@@ -51,7 +53,7 @@ const Settings: React.FC = () => {
                         thumbColor="#fff"
                         trackColor={{
                             true: colors.bg.success,
-                            false: colors.bg.disabled
+                            false: '#ccc'
                         }}
                         onValueChange={() => {
                             dispatch(
@@ -72,7 +74,7 @@ const Settings: React.FC = () => {
                         thumbColor="#fff"
                         trackColor={{
                             true: colors.bg.success,
-                            false: colors.bg.disabled
+                            false: '#ccc'
                         }}
                         onValueChange={() => {
                             dispatch(
@@ -91,7 +93,7 @@ const Settings: React.FC = () => {
                             updateAccordionOpen('FLOW');
                         }}>
                         <SettingsMenuItemLabel>
-                            {FOCUS_MINUTES}m
+                            {FOCUS_MINUTES}min
                         </SettingsMenuItemLabel>
                         <Feather
                             name={
@@ -105,7 +107,28 @@ const Settings: React.FC = () => {
                     </SettingsSelect>
                     {accordionOpen === 'FLOW' && (
                         <SettingsAccordion>
-                            <Text>Flow</Text>
+                            <Text>Minutes</Text>
+                            <HorizontalPicker
+                                data={flowDurations}
+                                renderItem={item => (
+                                    <HorizontalPickerView>
+                                        <Text>{item}</Text>
+                                    </HorizontalPickerView>
+                                )}
+                                itemWidth={80}
+                                snapTimeout={0}
+                                defaultIndex={flowDurations.findIndex(
+                                    val => val === FOCUS_MINUTES
+                                )}
+                                onChange={number => {
+                                    dispatch(
+                                        updateSettings({
+                                            key: 'FOCUS_MINUTES',
+                                            value: flowDurations[number]
+                                        })
+                                    );
+                                }}
+                            />
                         </SettingsAccordion>
                     )}
                 </SettingsMenuItem>
@@ -118,7 +141,7 @@ const Settings: React.FC = () => {
                             updateAccordionOpen('SHORT_BREAK');
                         }}>
                         <SettingsMenuItemLabel>
-                            {BREAK_MINUTES}m
+                            {BREAK_MINUTES}min
                         </SettingsMenuItemLabel>
                         <Feather
                             name={
@@ -132,7 +155,28 @@ const Settings: React.FC = () => {
                     </SettingsSelect>
                     {accordionOpen === 'SHORT_BREAK' && (
                         <SettingsAccordion>
-                            <Text>Short Break</Text>
+                            <Text>Minutes</Text>
+                            <HorizontalPicker
+                                data={shortBreakDurations}
+                                renderItem={item => (
+                                    <HorizontalPickerView>
+                                        <Text>{item}</Text>
+                                    </HorizontalPickerView>
+                                )}
+                                itemWidth={80}
+                                snapTimeout={0}
+                                defaultIndex={shortBreakDurations.findIndex(
+                                    val => val === BREAK_MINUTES
+                                )}
+                                onChange={number => {
+                                    dispatch(
+                                        updateSettings({
+                                            key: 'BREAK_MINUTES',
+                                            value: shortBreakDurations[number]
+                                        })
+                                    );
+                                }}
+                            />
                         </SettingsAccordion>
                     )}
                 </SettingsMenuItem>
@@ -145,7 +189,7 @@ const Settings: React.FC = () => {
                             updateAccordionOpen('LONG_BREAK');
                         }}>
                         <SettingsMenuItemLabel>
-                            {LONG_BREAK_MINUTES}m
+                            {LONG_BREAK_MINUTES}min
                         </SettingsMenuItemLabel>
                         <Feather
                             name={
@@ -159,7 +203,28 @@ const Settings: React.FC = () => {
                     </SettingsSelect>
                     {accordionOpen === 'LONG_BREAK' && (
                         <SettingsAccordion>
-                            <Text>Long Break</Text>
+                            <Text>Minutes</Text>
+                            <HorizontalPicker
+                                data={longBreakDurations}
+                                renderItem={item => (
+                                    <HorizontalPickerView>
+                                        <Text>{item}</Text>
+                                    </HorizontalPickerView>
+                                )}
+                                itemWidth={80}
+                                snapTimeout={0}
+                                defaultIndex={longBreakDurations.findIndex(
+                                    val => val === LONG_BREAK_MINUTES
+                                )}
+                                onChange={number => {
+                                    dispatch(
+                                        updateSettings({
+                                            key: 'LONG_BREAK_MINUTES',
+                                            value: longBreakDurations[number]
+                                        })
+                                    );
+                                }}
+                            />
                         </SettingsAccordion>
                     )}
                 </SettingsMenuItem>
