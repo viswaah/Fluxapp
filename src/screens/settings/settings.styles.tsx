@@ -58,6 +58,7 @@ export const HorizontalPickerViewMask = styled.View`
     height: 20;
     left: 0;
     bottom: 0;
+    z-index: -10;
     justify-content: center;
     align-items: center;
 `;
