@@ -41,7 +41,7 @@ const createScreenOptions:
         tabBarShowLabel: false,
         headerShown: false,
         tabBarStyle: {
-            height: 52
+            backgroundColor: colors.bg.secondary
         },
         tabBarActiveTintColor: colors.text.primary,
         tabBarInactiveTintColor: colors.text.primary,
