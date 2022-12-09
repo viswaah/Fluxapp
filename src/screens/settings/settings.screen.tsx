@@ -7,8 +7,11 @@ import SafeArea from '../../components/safearea/safearea.component';
 import {updateSettings, useAppDispatch, useAppSelector} from '../../redux';
 import {colors} from '../../theme/colors';
 import {
+    HorizontalPickerSelectedBox,
     HorizontalPickerView,
+    HorizontalPickerViewMask,
     SettingsAccordion,
+    SettingsAccordionLabel,
     SettingsContainer,
     SettingsMenuItem,
     SettingsMenuItemLabel,
@@ -107,7 +110,9 @@ const Settings: React.FC = () => {
                     </SettingsSelect>
                     {accordionOpen === 'FLOW' && (
                         <SettingsAccordion>
-                            <Text>Minutes</Text>
+                            <SettingsAccordionLabel>
+                                Minutes
+                            </SettingsAccordionLabel>
                             <HorizontalPicker
                                 data={flowDurations}
                                 renderItem={item => (
@@ -129,6 +134,9 @@ const Settings: React.FC = () => {
                                     );
                                 }}
                             />
+                            <HorizontalPickerViewMask>
+                                <HorizontalPickerSelectedBox />
+                            </HorizontalPickerViewMask>
                         </SettingsAccordion>
                     )}
                 </SettingsMenuItem>
@@ -155,7 +163,9 @@ const Settings: React.FC = () => {
                     </SettingsSelect>
                     {accordionOpen === 'SHORT_BREAK' && (
                         <SettingsAccordion>
-                            <Text>Minutes</Text>
+                            <SettingsAccordionLabel>
+                                Minutes
+                            </SettingsAccordionLabel>
                             <HorizontalPicker
                                 data={shortBreakDurations}
                                 renderItem={item => (
@@ -177,6 +187,9 @@ const Settings: React.FC = () => {
                                     );
                                 }}
                             />
+                            <HorizontalPickerViewMask>
+                                <HorizontalPickerSelectedBox />
+                            </HorizontalPickerViewMask>
                         </SettingsAccordion>
                     )}
                 </SettingsMenuItem>
@@ -203,7 +216,9 @@ const Settings: React.FC = () => {
                     </SettingsSelect>
                     {accordionOpen === 'LONG_BREAK' && (
                         <SettingsAccordion>
-                            <Text>Minutes</Text>
+                            <SettingsAccordionLabel>
+                                Minutes
+                            </SettingsAccordionLabel>
                             <HorizontalPicker
                                 data={longBreakDurations}
                                 renderItem={item => (
@@ -225,6 +240,9 @@ const Settings: React.FC = () => {
                                     );
                                 }}
                             />
+                            <HorizontalPickerViewMask>
+                                <HorizontalPickerSelectedBox />
+                            </HorizontalPickerViewMask>
                         </SettingsAccordion>
                     )}
                 </SettingsMenuItem>

@@ -37,10 +37,35 @@ export const SettingsSelect = styled.TouchableOpacity`
 
 export const SettingsAccordion = styled.View`
     width: 100%;
+    margin-top: ${spaces[2]};
+    margin-bottom: ${spaces[1]};
+`;
+
+export const SettingsAccordionLabel = styled.Text`
+    margin-bottom: ${spaces[1]};
+    font-size: ${fontSizes.caption};
 `;
 
 export const HorizontalPickerView = styled.View`
     width: 80px;
     justify-content: center;
     align-items: center;
+`;
+
+export const HorizontalPickerViewMask = styled.View`
+    width: 100%;
+    position: absolute;
+    height: 20;
+    left: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const HorizontalPickerSelectedBox = styled.View`
+    width: 24;
+    height: 24;
+    border-width: 2;
+    border-radius: 4;
+    border-color: black;
 `;
