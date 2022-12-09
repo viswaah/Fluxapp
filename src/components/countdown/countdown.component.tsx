@@ -45,7 +45,7 @@ const Countdown: React.FC<CountdownProps> = ({
                 clearInterval(interval.current);
                 return sec;
             }
-            return sec - 60;
+            return sec - 1;
         });
     };
 
