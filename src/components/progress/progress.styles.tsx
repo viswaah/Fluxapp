@@ -26,7 +26,7 @@ export const Unfinished = styled.View`
     background-color: ${colors.bg.secondary};
 `;
 
-export const ProgressLine = styled.View`
+export const ProgressLine = styled.View<{finished: boolean}>`
     height: 4px;
     width: ${gapBetweenCircles};
     background-color: ${({finished = true}) =>

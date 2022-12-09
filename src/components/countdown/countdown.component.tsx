@@ -24,7 +24,7 @@ interface CountdownProps {
     isCompleted: boolean;
     durations: number;
     isPaused: boolean;
-    onProgress: () => void;
+    onProgress: () => Promise<void>;
     onEnd: () => void;
 }
 

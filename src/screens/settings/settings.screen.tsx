@@ -3,7 +3,7 @@ import HorizontalPicker from '@vseslav/react-native-horizontal-picker';
 import React from 'react';
 import {Switch, Text} from 'react-native';
 
-import SafeArea from '../../components/safearea/safearea.component';
+import SafeArea from '../../components/safe-area/safe-area.component';
 import {updateSettings, useAppDispatch, useAppSelector} from '../../redux';
 import {colors} from '../../theme/colors';
 import {

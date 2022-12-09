@@ -5,7 +5,7 @@ import React from 'react';
 import tick from '../../../assets/tick.wav';
 import Countdown from '../../components/countdown/countdown.component';
 import Progress from '../../components/progress/progress.component';
-import SafeArea from '../../components/safearea/safearea.component';
+import SafeArea from '../../components/safe-area/safe-area.component';
 import {updateSettings, useAppDispatch, useAppSelector} from '../../redux';
 import {colors} from '../../theme/colors';
 import {
