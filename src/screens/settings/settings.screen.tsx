@@ -22,6 +22,7 @@ import {
 const flowDurations = [5, 10, 15, 20, 25, 30, 40, 50, 60];
 const shortBreakDurations = [5, 10, 15, 20];
 const longBreakDurations = [15, 20, 25, 30, 40, 50, 60];
+const flowCounts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const Settings: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -30,14 +31,15 @@ const Settings: React.FC = () => {
         FOCUS_MINUTES,
         BREAK_MINUTES,
         START_BREAK_AUTOMATICALLY,
-        LONG_BREAK_MINUTES
+        LONG_BREAK_MINUTES,
+        FLOW_COUNT
     } = useAppSelector(state => state.settings);
     const [accordionOpen, setAccordionOpen] = React.useState<
-        'FLOW' | 'SHORT_BREAK' | 'LONG_BREAK' | null
+        'FLOW' | 'SHORT_BREAK' | 'LONG_BREAK' | 'COUNT' | null
     >(null);
 
     const updateAccordionOpen = (
-        newValue: 'FLOW' | 'SHORT_BREAK' | 'LONG_BREAK'
+        newValue: 'FLOW' | 'SHORT_BREAK' | 'LONG_BREAK' | 'COUNT'
     ): void => {
         if (accordionOpen === newValue) setAccordionOpen(null);
         else setAccordionOpen(newValue);
@@ -236,6 +238,57 @@ const Settings: React.FC = () => {
                                         updateSettings({
                                             key: 'LONG_BREAK_MINUTES',
                                             value: longBreakDurations[number]
+                                        })
+                                    );
+                                }}
+                            />
+                            <HorizontalPickerViewMask>
+                                <HorizontalPickerSelectedBox />
+                            </HorizontalPickerViewMask>
+                        </SettingsAccordion>
+                    )}
+                </SettingsMenuItem>
+                <SettingsMenuItem>
+                    <SettingsMenuItemLabel>Flow count</SettingsMenuItemLabel>
+                    <SettingsSelect
+                        onPress={() => {
+                            updateAccordionOpen('COUNT');
+                        }}>
+                        <SettingsMenuItemLabel>
+                            {FLOW_COUNT}
+                        </SettingsMenuItemLabel>
+                        <Feather
+                            name={
+                                accordionOpen === 'COUNT'
+                                    ? 'chevron-up'
+                                    : 'chevron-down'
+                            }
+                            size={24}
+                            color="black"
+                        />
+                    </SettingsSelect>
+                    {accordionOpen === 'COUNT' && (
+                        <SettingsAccordion>
+                            <SettingsAccordionLabel>
+                                Interval
+                            </SettingsAccordionLabel>
+                            <HorizontalPicker
+                                data={flowCounts}
+                                renderItem={item => (
+                                    <HorizontalPickerView>
+                                        <Text>{item}</Text>
+                                    </HorizontalPickerView>
+                                )}
+                                itemWidth={80}
+                                snapTimeout={0}
+                                defaultIndex={flowCounts.findIndex(
+                                    val => val === FLOW_COUNT
+                                )}
+                                onChange={number => {
+                                    dispatch(
+                                        updateSettings({
+                                            key: 'FLOW_COUNT',
+                                            value: flowCounts[number]
                                         })
                                     );
                                 }}
