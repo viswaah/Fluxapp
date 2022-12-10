@@ -24,7 +24,7 @@ interface CountdownProps {
     isCompleted: boolean;
     durations: number;
     isPaused: boolean;
-    onProgress: () => {};
+    onProgress: () => void;
     onEnd: () => void;
 }
 
@@ -39,13 +39,13 @@ const Countdown: React.FC<CountdownProps> = ({
     const interval = React.useRef<ReturnType<typeof setInterval>>(null);
     const [currentSec, setCurrentSec] = React.useState(durations);
 
-    const updateCurrentSec = () => {
-        setCurrentSec(currentSec => {
-            if (currentSec === 0) {
+    const updateCurrentSec = (): void => {
+        setCurrentSec(sec => {
+            if (sec === 0) {
                 clearInterval(interval.current);
-                return currentSec;
+                return sec;
             }
-            return currentSec - 1;
+            return sec - 1;
         });
     };
 
@@ -54,6 +54,7 @@ const Countdown: React.FC<CountdownProps> = ({
         (async () => {
             await onProgress();
         })();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentSec]);
 
     React.useEffect(() => {

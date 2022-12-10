@@ -15,11 +15,8 @@ export const settingsSlice = createSlice({
         updateSettings: (state, action) => {
             const {key, value} = action.payload;
             state[key] = value;
-        },
-        updateRawSettings: (state, action) => {
-            state = action.payload;
         }
     }
 });
 
-export const {updateSettings, updateRawSettings} = settingsSlice.actions;
+export const {updateSettings} = settingsSlice.actions;

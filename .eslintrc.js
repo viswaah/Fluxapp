@@ -72,6 +72,12 @@ module.exports = {
         ],
         'no-loop-func': 'off',
         'no-use-before-define': 'off',
+        'no-param-reassign': ['error', {
+            props: true,
+            ignorePropertyModificationsFor: [
+                'state',
+            ]
+        }],
         '@typescript-eslint/no-use-before-define': ['error'],
         '@typescript-eslint/no-loop-func': ['error'],
         'no-shadow': 'off',

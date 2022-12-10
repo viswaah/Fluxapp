@@ -1,27 +1,18 @@
 import styled from 'styled-components/native';
 
 import {colors} from '../../theme/colors';
-import {sizes} from '../../theme/sizes';
 import {spaces} from '../../theme/spaces';
 
-const circleSize = sizes[1];
+const circleSize = '20px';
 const gapBetweenCircles = spaces[2];
-
-const HalfFilled = styled.View`
-    width: 5px;
-    height: ${circleSize};
-    background-color: ${colors.text.primary};
-`;
-
-const FullFilled = styled.View`
-    width: ${circleSize};
-    height: ${circleSize};
-    background-color: ${colors.text.primary};
-`;
 
 export const ProgressContainer = styled.View`
     flex-direction: row;
-    margin-right: -${gapBetweenCircles};
+`;
+
+export const SingleProgressItem = styled.View`
+    flex-direction: row;
+    align-items: center;
 `;
 
 export const Unfinished = styled.View`
@@ -32,20 +23,36 @@ export const Unfinished = styled.View`
     overflow: hidden;
     width: ${circleSize};
     border-radius: ${circleSize};
-    border-style: solid;
-    border-width: 3px;
-    border-color: ${colors.text.primary};
-    margin-right: ${gapBetweenCircles};
+    background-color: ${colors.bg.secondary};
 `;
 
-export const Running = () => (
-    <Unfinished>
-        <HalfFilled />
-    </Unfinished>
-);
+export const ProgressLine = styled.View`
+    height: 4px;
+    width: ${gapBetweenCircles};
+    background-color: ${({finished = true}) =>
+        finished ? colors.bg.tertiary : colors.bg.secondary};
+`;
 
-export const Finished = () => (
-    <Unfinished>
-        <FullFilled />
-    </Unfinished>
-);
+export const Running = styled.View`
+    height: ${circleSize};
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    overflow: hidden;
+    width: ${circleSize};
+    border-radius: ${circleSize};
+    border-style: solid;
+    border-width: 4px;
+    border-color: ${colors.bg.tertiary};
+`;
+
+export const Finished = styled.View`
+    height: ${circleSize};
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    overflow: hidden;
+    width: ${circleSize};
+    border-radius: ${circleSize};
+    background-color: ${colors.bg.tertiary};
+`;

@@ -1,13 +1,14 @@
 import {Feather} from '@expo/vector-icons';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
+
+import {updateSettings, useAppDispatch} from '../../redux';
 import {
     SelectContainer,
     SelectItem,
     SelectItemLabel,
     SelectItemTouchable
 } from './select.styles';
-import {updateSettings, useAppDispatch} from '../../redux';
 
 type SelectProps = NativeStackScreenProps<
     {
@@ -16,10 +17,8 @@ type SelectProps = NativeStackScreenProps<
             selected: number;
             key: string;
         };
-        Settings: {};
     },
-    'Select',
-    'Settings'
+    'Select'
 >;
 
 const Select: React.FC<SelectProps> = props => {
@@ -28,14 +27,13 @@ const Select: React.FC<SelectProps> = props => {
     const dispatch = useAppDispatch();
     return (
         <SelectContainer>
-            {list.map((number, idx) => (
-                <SelectItem key={idx}>
+            {list.map(number => (
+                <SelectItem key={`${key}-${number}`}>
                     <SelectItemTouchable
                         onPress={() => {
                             dispatch(updateSettings({key, value: number}));
                             navigation.goBack();
-                        }}
-                    >
+                        }}>
                         <SelectItemLabel>{number}m</SelectItemLabel>
                         {number === selected && (
                             <Feather name="check" size={24} color="black" />
