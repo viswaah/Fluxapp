@@ -31,14 +31,14 @@ const Progress: React.FC<ProgressProps> = ({
                     if (idx + 1 < currentFlow)
                         return (
                             <SingleProgressItem key={idx}>
-                                {idx === 0 ? <></> : <ProgressLine />}
+                                {idx === 0 ? <></> : <ProgressLine finished />}
                                 <Finished />
                             </SingleProgressItem>
                         );
                     if (idx + 1 === currentFlow && !isBreak && !isCompleted)
                         return (
                             <SingleProgressItem key={idx}>
-                                {idx === 0 ? <></> : <ProgressLine />}
+                                {idx === 0 ? <></> : <ProgressLine finished />}
                                 <Running />
                             </SingleProgressItem>
                         );
